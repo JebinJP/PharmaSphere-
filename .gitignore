@@ -1,0 +1,6 @@
+backend/*.env
+backend/*.env.*
+backend/src/main/resources/application-local.properties
+backend/src/main/resources/application-local.yml
+backend/node_modules
+node_modules
