@@ -12,6 +12,18 @@ const getDashboardStats = async (req, res) => {
         );
         const totalRevenue = salesResult.rows[0].total_revenue || 0;
 
+        // Weekly Sales (Last 7 Days)
+        const weeklySalesResult = await db.query(
+            "SELECT SUM(total_price) as total_revenue FROM sales WHERE sale_date >= CURRENT_DATE - INTERVAL '7 days'"
+        );
+        const weeklyRevenue = weeklySalesResult.rows[0].total_revenue || 0;
+
+        // Monthly Sales (Last 30 Days)
+        const monthlySalesResult = await db.query(
+            "SELECT SUM(total_price) as total_revenue FROM sales WHERE sale_date >= CURRENT_DATE - INTERVAL '30 days'"
+        );
+        const monthlyRevenue = monthlySalesResult.rows[0].total_revenue || 0;
+
         // 2. Prescriptions Processed Today
         const prescriptionsResult = await db.query(
             "SELECT COUNT(*) as count FROM prescriptions WHERE DATE(created_at) = CURRENT_DATE"
@@ -36,6 +48,8 @@ const getDashboardStats = async (req, res) => {
 
         res.json({
             totalRevenue,
+            weeklyRevenue,
+            monthlyRevenue,
             prescriptionCount,
             lowStockCount,
             salesTrends

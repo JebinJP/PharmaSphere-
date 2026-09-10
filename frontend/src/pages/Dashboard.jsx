@@ -23,6 +23,8 @@ ChartJS.register(
 const Dashboard = () => {
     const [stats, setStats] = useState({
         totalRevenue: 0,
+        weeklyRevenue: 0,
+        monthlyRevenue: 0,
         prescriptionCount: 0,
         lowStockCount: 0,
         salesTrends: []
@@ -66,6 +68,16 @@ const Dashboard = () => {
                     <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#374151' }}>Daily Sales</h3>
                     <p className="stat-value text-blue">₹{Number(stats.totalRevenue).toFixed(2)}</p>
                     <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Today's Revenue</p>
+                </div>
+                <div className="card">
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#374151' }}>Weekly Sales</h3>
+                    <p className="stat-value" style={{ color: '#8b5cf6' }}>₹{Number(stats.weeklyRevenue).toFixed(2)}</p>
+                    <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Last 7 Days</p>
+                </div>
+                <div className="card">
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#374151' }}>Monthly Sales</h3>
+                    <p className="stat-value" style={{ color: '#f59e0b' }}>₹{Number(stats.monthlyRevenue).toFixed(2)}</p>
+                    <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Last 30 Days</p>
                 </div>
                 <div className="card">
                     <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#374151' }}>Prescriptions</h3>
